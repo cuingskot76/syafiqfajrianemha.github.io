@@ -79,17 +79,18 @@ const onHandleInput = (e) => {
   const testersScore = document.querySelectorAll("#skorPenguji");
   const averageScores = document.querySelectorAll("#rataRata");
   const inputBobotxSkor__2 = document.querySelectorAll("#bobotxSkor");
+  const totalNilaiForm2 = document.querySelector("#totalNilai");
 
-  let resultTesterScores = 0;
-  let tempResult = 0;
-  let totalForm2 = 0;
+  let totalTesterScore = 0;
+  let totalAverage = 0;
+  // let totalForm2 = 0;
   const jumlahSkorPenguji = nilaiKedua[0].jumlahPenguji.length;
 
   testersScore.forEach((skor) => {
     if (skor.name === name) {
-      resultTesterScores += parseInt(skor.value);
-      // resultTesterScores += skor.value;
-      // resultTesterScores += parseFloat(skor.value);
+      totalTesterScore += parseInt(skor.value);
+      // totalTesterScore += skor.value;
+      // totalTesterScore += parseFloat(skor.value);
 
       if (skor.value > 100) {
         skor.value = null;
@@ -102,26 +103,37 @@ const onHandleInput = (e) => {
       }
 
       // count average
-      averageScores.forEach((rataRata) => {
-        if (rataRata.name === name) {
-          rataRata.value = (resultTesterScores / jumlahSkorPenguji).toFixed(2);
-          tempResult = resultTesterScores / jumlahSkorPenguji;
+      averageScores.forEach((rata) => {
+        if (rata.name === name) {
+          rata.value = (totalTesterScore / jumlahSkorPenguji).toFixed(2);
+          totalAverage = totalTesterScore / jumlahSkorPenguji;
         }
       });
     }
   });
 
+  let totalArr = [];
   inputBobotxSkor__2.forEach((bobot, i) => {
     if (bobot.name === name) {
-      const getBobot = nilaiKedua[0].data[i].bobot;
-      // const bobotRes = parseInt((tempResult / getBobot) * getBobot);
-      const bobotRes = (tempResult / getBobot) * getBobot;
+      const getBobotScore = nilaiKedua[0].data[i].bobot;
+      const bobotResult = parseInt(
+        (totalAverage / getBobotScore) * getBobotScore
+      );
+      // const bobotResult = (totalAverage / getBobotScore) * getBobotScore;
       // if you want to get 2 decimal
-      // bobot.value = bobotRes.toFixed(2);
-      bobot.value = bobotRes;
+      // bobot.value = bobotResult.toFixed(2);
+      bobot.value = bobotResult;
+      // total form 2
     }
-    totalForm2 += bobot.value;
+    // totalForm2 += bobot.value;
+    totalArr.push(bobot.value);
   });
+  // get total form 2
+  const intArr = totalArr.map(Number);
+  const filteredArr = intArr.filter((value) => value);
+  const sum = filteredArr.reduce((acc, cur) => acc + cur, 0);
+
+  totalNilaiForm2.value = sum;
 
   // form__1
   const inputBobotxSkor = document.querySelectorAll("#bobotxskor");
@@ -174,35 +186,37 @@ const onHandleInput = (e) => {
   });
 
   // get nilai akhir
-  const nilaiAkir = document.getElementById("nilaiAkhir");
+  const getNilaiAkhhir = document.getElementById("nilaiAkhir");
 
   const totalNilaiPertama = (totalForm1 * 40) / 100;
-  const totalNilaiKedua = (totalForm2 * 60) / 100;
-  nilaiAkir.value = totalNilaiPertama + totalNilaiKedua;
-  console.log(totalNilaiKedua);
+  const totalNilaiKedua = (sum * 60) / 100;
+  getNilaiAkhhir.value = totalNilaiPertama + totalNilaiKedua;
+  // get nilai huruf
+  const nilaiHuruf = document.getElementById("nilaiHuruf");
+  const nilaiAkhir = totalNilaiPertama + totalNilaiKedua;
 
-  // // get nilai huruf
-  // const nilaiHuruf = document.getElementById("nilaiHuruf");
-  // const nilaiAkhir = nilaiAkhirPertama + nilaiAkhirKedua;
-  // if (nilaiAkhir >= 86 && nilaiAkhir <= 100) {
-  //   nilaiHuruf.innerHTML = "A";
-  // } else if (nilaiAkhir >= 81 && nilaiAkhir < 86) {
-  //   nilaiHuruf.innerHTML = "A-";
-  // } else if (nilaiAkhir >= 76 && nilaiAkhir < 81) {
-  //   nilaiHuruf.innerHTML = "B+";
-  // } else if (nilaiAkhir >= 71 && nilaiAkhir < 76) {
-  //   nilaiHuruf.innerHTML = "B";
-  // } else if (nilaiAkhir >= 66 && nilaiAkhir < 71) {
-  //   nilaiHuruf.innerHTML = "B-";
-  // } else if (nilaiAkhir >= 61 && nilaiAkhir < 66) {
-  //   nilaiHuruf.innerHTML = "C+";
-  // } else if (nilaiAkhir >= 56 && nilaiAkhir < 61) {
-  //   nilaiHuruf.innerHTML = "C";
-  // } else if (nilaiAkhir >= 41 && nilaiAkhir < 56) {
-  //   nilaiHuruf.innerHTML = "D";
-  // } else {
-  //   nilaiHuruf.innerHTML = "E";
-  // }
+  if (nilaiAkhir >= 100) {
+    nilaiHuruf.innerHTML = "A+";
+    getNilaiAkhhir.value = 100;
+  } else if (nilaiAkhir >= 86 && nilaiAkhir <= 100) {
+    nilaiHuruf.innerHTML = "A";
+  } else if (nilaiAkhir >= 81 && nilaiAkhir < 86) {
+    nilaiHuruf.innerHTML = "A-";
+  } else if (nilaiAkhir >= 76 && nilaiAkhir < 81) {
+    nilaiHuruf.innerHTML = "B+";
+  } else if (nilaiAkhir >= 71 && nilaiAkhir < 76) {
+    nilaiHuruf.innerHTML = "B";
+  } else if (nilaiAkhir >= 66 && nilaiAkhir < 71) {
+    nilaiHuruf.innerHTML = "B-";
+  } else if (nilaiAkhir >= 61 && nilaiAkhir < 66) {
+    nilaiHuruf.innerHTML = "C+";
+  } else if (nilaiAkhir >= 56 && nilaiAkhir < 61) {
+    nilaiHuruf.innerHTML = "C";
+  } else if (nilaiAkhir >= 41 && nilaiAkhir < 56) {
+    nilaiHuruf.innerHTML = "D";
+  } else {
+    nilaiHuruf.innerHTML = "E";
+  }
 };
 
 // const onHandleInput__2 = (e) => {
@@ -423,12 +437,13 @@ nilaiKedua.forEach((result) => {
   totalTd.textContent = "Total";
   totalBobotxSkorInput.setAttribute("type", "number");
   totalBobotxSkorInput.setAttribute("disabled", "disabled");
-  totalBobotxSkorInput.setAttribute("autocomplete", "off");
   totalBobotxSkorInput.setAttribute("id", "totalNilai");
   totalBobotxSkorInput.setAttribute("name", "totalNilai");
   totalBobotxSkorInput.setAttribute("min", "0");
+  // totalBobotxSkorInput.setAttribute("placeholder", "0");
   totalBobotxSkorInput.setAttribute("max", "4");
   totalBobotxSkorInput.setAttribute("value", "0");
+
   totalBobotxSkorInput.classList.add("input__content");
   totalBobotxSkor.appendChild(totalBobotxSkorInput);
 
