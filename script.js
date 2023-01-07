@@ -1,4 +1,4 @@
-// __nilai pertama
+// simulasi-nilai-skripsi__nilai-pertama
 const nilaiPertama = [
   {
     title: "Simulasi Nilai Skripsi",
@@ -19,7 +19,7 @@ const nilaiPertama = [
     ],
   },
 ];
-// __nilai kedua
+// simulasi-nilai-skripsi__nilai-kedua
 const nilaiKedua = [
   {
     subTitle: [
@@ -219,12 +219,7 @@ const onHandleInput = (e) => {
   }
 };
 
-// const onHandleInput__2 = (e) => {
-
-// };
-
 // ! first form
-
 nilaiPertama.forEach((result) => {
   const form = document.querySelector(".form__pertama");
   form.classList.add("form__pertama");
@@ -497,3 +492,166 @@ nilaiKedua.forEach((result) => {
   table.appendChild(thead);
   form.appendChild(table);
 });
+
+// simulasi-audit__nilai-pertama
+const nilaiKetiga = [
+  {
+    subTitle: ["No", "Indikator", "Rublik", "Keterangan"],
+  },
+  {
+    data: [
+      {
+        no: 1,
+        indikator: [
+          "Presentase dosen yang melakukan kegiatan awal perkuliahan(KAP)",
+          {
+            subIndikator: [
+              {
+                1: "Penyampaian sub-cpmk",
+                2: " Penyampaian indikator pembelajaran",
+                3: "Pemeriksaan kehadiran mahasiswa",
+              },
+            ],
+          },
+        ],
+        rubrik: [
+          {
+            skor: 4,
+            uraian: "KAP DOSEN >= 80%",
+          },
+          {
+            skor: 3,
+            uraian: "60% <= KAP DOSEN < 80%",
+          },
+          {
+            skor: 2,
+            uraian: "40% <= KAP DOSEN < 60%",
+          },
+          {
+            skor: 1,
+            uraian: "10% <= KAP DOSEN < 40%",
+          },
+          {
+            skor: 0,
+            uraian: "KAP DOSEN < 10%",
+          },
+        ],
+      },
+      {
+        no: 2,
+        indikator: [
+          "Presentase dosen yang memenuhi karakteristik proses pembelajaran yang bersifat interkatif meliputi kegiatan interksi yang konstruktif antara:",
+          {
+            subIndikator: [
+              {
+                1: "Mahasiswa dengan dosen",
+                2: "Mahasiswa dengan mahasiswa",
+                3: "Mahasiswa dengan sumber belajar",
+              },
+            ],
+          },
+        ],
+        rubrik: [
+          {
+            skor: 4,
+            uraian: "DOSEN INTERAKTIF >= 80%",
+          },
+          {
+            skor: 3,
+            uraian: "60% <= DOSEN INTERAKTIF < 80%",
+          },
+          {
+            skor: 2,
+            uraian: "40% <= DOSEN INTERAKTIF < 60%",
+          },
+          {
+            skor: 1,
+            uraian: "10% <= DOSEN INTERAKTIF < 40%",
+          },
+          {
+            skor: 0,
+            uraian: "DOSEN INTERAKTIF < 10%",
+          },
+        ],
+      },
+      {
+        no: 3,
+        indikator: [
+          "Presentase dosen yang memenuhi karakteristik proses pembelajaran yang bersifat holistik yang meliputi",
+          {
+            subIndikator: [
+              {
+                1: "Belajar secara utuh",
+                2: "Lingkungan belajar yang berintegritas",
+                3: "Mewujudkan pribadi berintegritas antara individu dan sosial",
+                4: "Fokus dalam belajar",
+                5: "Mengembangkan mahasiswa sesuai potensi",
+              },
+            ],
+          },
+        ],
+        rubrik: [
+          {
+            skor: 4,
+            uraian: "DOSEN HOLISTIK >= 80%",
+          },
+          {
+            skor: 3,
+            uraian: "60% <= DOSEN HOLISTIK < 80%",
+          },
+          {
+            skor: 2,
+            uraian: "40% <= DOSEN HOLISTIK < 60%",
+          },
+          {
+            skor: 1,
+            uraian: "10% <= DOSEN HOLISTIK < 40%",
+          },
+          {
+            skor: 0,
+            uraian: "DOSEN HOLISTIK < 10%",
+          },
+        ],
+      },
+      {
+        no: 4,
+        indikator: [
+          "Presentase dosen yang memenuhi karakteristik proses pembelajaran yang bersifat integratif yang meliputi",
+          {
+            subIndikator: [
+              {
+                1: "Menggunakan pendekatan antar mata kuliah",
+                2: "Menggabungkan beberapa mata kuliah",
+                3: "Menentukan ketrampilan, konsep dan sikap dalam beberapa mata kuliah",
+              },
+            ],
+          },
+        ],
+        rubrik: [
+          {
+            skor: 4,
+            uraian: "DOSEN INTEGRATIF >= 80%",
+          },
+          {
+            skor: 3,
+            uraian: "60% <= DOSEN INTEGRATIF < 80%",
+          },
+          {
+            skor: 2,
+            uraian: "40% <= DOSEN INTEGRATIF < 60%",
+          },
+          {
+            skor: 1,
+            uraian: "10% <= DOSEN INTEGRATIF < 40%",
+          },
+          {
+            skor: 0,
+            uraian: "DOSEN INTEGRATIF < 10%",
+          },
+        ],
+      },
+    ],
+    subRubrik: ["skor", "uraian"],
+    subKeterangan: ["input nilai", "skor"],
+  },
+];
