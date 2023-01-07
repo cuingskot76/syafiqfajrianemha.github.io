@@ -342,7 +342,7 @@ nilaiKedua.forEach((result) => {
   // skor penguji
   result.jumlahPenguji.forEach((jumlahPenguji) => {
     const addSkorPengujiContent = document.createElement("th");
-    addSkorPengujiContent.textContent = `${jumlahPenguji}`;
+    addSkorPengujiContent.textContent = jumlahPenguji;
     addScorPengujiContent.appendChild(addSkorPengujiContent);
   });
 
@@ -351,10 +351,9 @@ nilaiKedua.forEach((result) => {
 
   const tBody = document.createElement("tbody");
   result.data.forEach((data) => {
-    // const tr = document.createElement("tr");
+    const tr = document.createElement("tr");
 
     // no
-    const tr = document.createElement("tr");
     const noElement = document.createElement("td");
     noElement.textContent = data.no;
     tr.appendChild(noElement);
@@ -496,7 +495,7 @@ nilaiKedua.forEach((result) => {
 // simulasi-audit__nilai-pertama
 const nilaiKetiga = [
   {
-    subTitle: ["No", "Indikator", "Rublik", "Keterangan"],
+    subTitle: ["No", "Indikator", "Rubrik", "Keterangan"],
   },
   {
     data: [
@@ -655,3 +654,94 @@ const nilaiKetiga = [
     subKeterangan: ["input nilai", "skor"],
   },
 ];
+
+// ! third form
+nilaiKetiga.forEach((result) => {
+  const form = document.querySelector(".form__pertama-simulasi-audit");
+  form.classList.add("form__ketiga");
+
+  // const table = document.createElement("table");
+  // const thead = document.createElement("thead");
+  // const subTitleContent = document.createElement("tr");
+  // const addScorPengujiContent = document.createElement("tr");
+
+  const table = document.querySelector(".table");
+  const thead = document.querySelector(".thead");
+  const tbody = document.createElement("tbody");
+  const tr = document.querySelector(".tr");
+  const addRubrikandKeteranganTr = document.createElement("tr");
+  // const addKeteranganTr = document.createElement("tr");
+
+  // handle multiple table
+  if (!table) {
+    table = document.createElement("table");
+    thead = document.createElement("thead");
+    tr = document.createElement("tr");
+  }
+  // table.innerHTML = "";
+
+  // sub title
+  result?.subTitle?.forEach((subTitle) => {
+    const subTitleElement = document.createElement("th");
+    subTitleElement.setAttribute("rowspan", "2");
+    // if (subTitle === "Keterangan" || subTitle === "Rubrik") {
+    //   subTitleElement.setAttribute("colspan", "3");
+    //   subTitleElement.removeAttribute("rowspan");
+    // }
+    if (subTitle === "Rubrik") {
+      subTitleElement.setAttribute("colspan", "2");
+      subTitleElement.removeAttribute("rowspan");
+    } else if (subTitle === "Keterangan") {
+      subTitleElement.setAttribute("colspan", "3");
+      subTitleElement.removeAttribute("rowspan");
+    }
+
+    subTitleElement.textContent = subTitle;
+    tr.appendChild(subTitleElement);
+  });
+
+  // sub rubrik
+  result?.subRubrik?.forEach((subRubrik) => {
+    const addSkorPengujiContent = document.createElement("th");
+    addSkorPengujiContent.textContent = subRubrik;
+    addRubrikandKeteranganTr.appendChild(addSkorPengujiContent);
+  });
+
+  // sub keterangan
+  result?.subKeterangan?.forEach((subKeterangan) => {
+    const addSkorPengujiContent = document.createElement("th");
+    addSkorPengujiContent.textContent = subKeterangan;
+    addRubrikandKeteranganTr.appendChild(addSkorPengujiContent);
+  });
+
+  thead.appendChild(tr);
+  thead.appendChild(addRubrikandKeteranganTr);
+
+  // body
+  result?.data?.forEach((res) => {
+    const bodyTr = document.createElement("tr");
+    // add nomor
+    const addNomorContent = document.createElement("tr");
+    const addNomor = document.createElement("td");
+    // addNomor.setAttribute("rowspan", "5");
+    addNomor.textContent = res.no;
+    bodyTr.appendChild(addNomor);
+
+    // add indikator
+    const addIndikatorContent = document.createElement("tr");
+    const addIndikator = document.createElement("td");
+    // addIndikator.setAttribute("rowspan", "5");
+    // res.indikator.forEach((newRes, i) => {
+    //   const getSubIndikator = newRes.subIndikator?.[0]?.[i];
+    //   console.log(getSubIndikator);
+    // });
+    const x = res.indikator?.[1]?.subIndikator;
+    console.log(x);
+
+    tbody.appendChild(bodyTr);
+    table.appendChild(tbody);
+  });
+
+  table.appendChild(thead);
+  form.appendChild(table);
+});
