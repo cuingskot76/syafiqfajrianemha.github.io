@@ -179,10 +179,10 @@ const onHandleInput = (e) => {
           hasilNew += parseInt(result.value);
         });
       }
+      // get total bobot x skor
+      const totalBobotSkor = document.getElementById("totalBobotxSkor");
+      totalBobotSkor.value = hasilNew;
     }
-    // get total bobot x skor
-    const totalBobotSkor = document.getElementById("totalBobotxSkor");
-    totalBobotSkor.value = hasilNew;
   });
 
   // get nilai akhir
